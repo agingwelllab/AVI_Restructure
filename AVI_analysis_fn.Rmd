@@ -6,12 +6,11 @@ output: html_notebook
 ```{r Load Libraries}
 # load libraries and data
 library(tidyverse)
-source('/Users/ssp160230/github_directory/AVI/AVI_functions.R')
-avi_raw <- read_csv('/Users/ssp160230/github_directory/AVI/AVI_data.csv')
+source('/Users/ssp160230/github_directory/AVI_RAnalysis/src/AVI_functions.R')
+avi_raw <- read_csv('/Users/ssp160230/github_directory/AVI_RAnalysis/data/AVI_data.csv')
 ```
 
 ```{r}
-#test new functions here
 avi_clean <- aclean(avi_raw)
 avi_octant <- aoctant(avi_clean)
 ```
