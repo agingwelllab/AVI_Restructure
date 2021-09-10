@@ -1,7 +1,7 @@
 # AVI_RAnalysis
 * Repo contains code to analyze data for the Affect Valuation Index (AVI) measure exported from REDCap
 
-# Functions
+## Functions
 * aclean(*df*)
   * restructures data frame from wide format to long format
   * input: raw data frame imported from CSV (*araw_df* in functions script)
