@@ -1,14 +1,16 @@
-# create a function to clean up raw data frame
+# function to clean up raw data frame
 aclean <- function(araw_df) {
   
   # remove unnecessary column for "complete" form status
   araw_wide <- select(araw_df, -affect_valuation_index_avi_complete)
   
-  # separate df by actual vs ideal affect scores
-  a_actual_long <- araw_wide[ , 1:31] %>%
-    gather(variables, actual, a_enthusiastic_hp:a_serene_lp, factor_key = TRUE)
-  a_ideal_long <- araw_wide[ , 32:61] %>%
-    gather(variables, ideal, i_enthusiastic_hp:i_serene_lp, factor_key = TRUE)
+  # make separate df for actual affect scores
+  a_actual_long <- araw_wide[ , 1:25] %>%
+    gather(variables, actual, a_enthusiastic_hp:a_satisfied_p, factor_key = TRUE)
+  
+  # make separate df for ideal affect scores
+  a_ideal_long <- araw_wide[ , 26:49] %>%
+    gather(variables, ideal, i_enthusiastic_hp:i_satisfied_p, factor_key = TRUE)
   
   # separate variables column into 'A/I', 'feeling', and 'octant'
   a_actual_long <- a_actual_long %>%
@@ -28,6 +30,7 @@ aclean <- function(araw_df) {
   atotal_clean <- arrange(atotal_clean, record_id, octant)
 }
 
+# function to create new df with mean octant subscores from clean df
 aoctant <- function(atotal_clean) {
   
   # create atotal_mean df with octant subscores for each record_id
@@ -37,7 +40,7 @@ aoctant <- function(atotal_clean) {
     FUN = mean
   )
   
-  # pivot df to long format to put actual/ideal values in separate column
+  # pivot df to long format to put actual/ideal variable in separate column
   atotal_pivotl <- atotal_mean_raw %>% 
     pivot_longer(
       cols = actual:ideal, 
@@ -45,7 +48,7 @@ aoctant <- function(atotal_clean) {
       values_to = "mean_score"
     )
   
-  #pivot df to wide format to get octants as columns
+  # pivot df to wide format to get octants as columns
   atotal_mean <- pivot_wider(
     data = atotal_pivotl, 
     names_from = octant, 
