@@ -40,6 +40,10 @@ aoctant <- function(atotal_clean) {
     FUN = mean
   )
   
+  # round octant scores to 2 decimals
+  atotal_mean_raw$actual <- round(atotal_mean_raw$actual, digits = 2)
+  atotal_mean_raw$ideal <- round(atotal_mean_raw$ideal, digits = 2)
+  
   # pivot df to long format to put actual/ideal variable in separate column
   atotal_pivotl <- atotal_mean_raw %>% 
     pivot_longer(

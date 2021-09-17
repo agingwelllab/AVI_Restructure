@@ -8,7 +8,7 @@ library(tidyverse)
 source('/Users/ssp160230/github_directory/AVI_Restructure/src/AVI_functions.R')
 
 # set hard-coded variables 
-avi_raw <- read_csv('/Users/ssp160230/github_directory/AVI_Restructure/data/AVI_data.csv')
+avi_raw <- read_csv('/Users/ssp160230/github_directory/data/AVI_data.csv')
 
 # clean and reformat raw data frame
 avi_clean <- aclean(avi_raw)
