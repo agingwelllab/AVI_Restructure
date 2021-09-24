@@ -22,16 +22,5 @@ avi_clean <- aclean(avi_raw)
 # calculate mean octant scores for each participant
 avi_octant <- aoctant(avi_clean)
 
-# write csv for clean df
-write.csv(
-  avi_clean, 
-  "/Users/ssp160230/github_directory/AVI_Restructure/output/AVI_clean.csv", 
-  row.names = FALSE
-)
 
-# write csv for octant df
-write.csv(
-  avi_octant, 
-  "/Users/ssp160230/github_directory/AVI_Restructure/output/AVI_octant.csv", 
-  row.names = FALSE
-)
+
